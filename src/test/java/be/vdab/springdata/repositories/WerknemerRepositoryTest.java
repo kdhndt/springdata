@@ -26,7 +26,8 @@ class WerknemerRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
     void findByFiliaalGemeente() {
         var antwerpen = "Antwerpen";
         assertThat(repository.findByFiliaalGemeente(antwerpen))
-                .hasSize(countRowsInTableWhere(WERKNEMERS, "filiaalId = (select id from filialen where gemeente = 'Antwerpen')"))
+                .hasSize(countRowsInTableWhere(WERKNEMERS,
+                        "filiaalId = (select id from filialen where gemeente = 'Antwerpen')"))
                 .first()
                 .extracting(Werknemer::getFiliaal)
                 .extracting(Filiaal::getGemeente)
